@@ -108,6 +108,9 @@ type SandboxTemplateStatus struct {
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced,shortName=sandboxtemplate
+// +kubebuilder:printcolumn:name="Age",type=date,JSONPath=`.metadata.creationTimestamp`
+// +kubebuilder:printcolumn:name="Network",type=string,JSONPath=`.spec.networkPolicyManagement`,priority=1
+// +kubebuilder:printcolumn:name="Containers",type=string,JSONPath=`.spec.podTemplate.spec.containers[*].name`,priority=1
 // SandboxTemplate is the Schema for the sandbox template API
 type SandboxTemplate struct {
 	metav1.TypeMeta `json:",inline"`

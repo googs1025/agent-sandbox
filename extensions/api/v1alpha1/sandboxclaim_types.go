@@ -95,6 +95,12 @@ type SandboxStatus struct {
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:resource:scope=Namespaced,shortName=sandboxclaim
+// +kubebuilder:printcolumn:name="Ready",type=string,JSONPath=`.status.conditions[?(@.type=="Ready")].status`
+// +kubebuilder:printcolumn:name="Sandbox",type=string,JSONPath=`.status.sandbox.Name`
+// +kubebuilder:printcolumn:name="Age",type=date,JSONPath=`.metadata.creationTimestamp`
+// +kubebuilder:printcolumn:name="Template",type=string,JSONPath=`.spec.sandboxTemplateRef.name`,priority=1
+// +kubebuilder:printcolumn:name="Reason",type=string,JSONPath=`.status.conditions[?(@.type=="Ready")].reason`,priority=1
+// +kubebuilder:printcolumn:name="Shutdown",type=date,JSONPath=`.spec.lifecycle.shutdownTime`,priority=1
 // SandboxClaim is the Schema for the sandbox Claim API
 type SandboxClaim struct {
 	metav1.TypeMeta `json:",inline"`

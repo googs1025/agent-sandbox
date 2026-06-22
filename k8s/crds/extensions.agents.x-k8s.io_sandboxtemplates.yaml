@@ -16,7 +16,19 @@ spec:
     singular: sandboxtemplate
   scope: Namespaced
   versions:
-  - name: v1alpha1
+  - additionalPrinterColumns:
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    - jsonPath: .spec.networkPolicyManagement
+      name: Network
+      priority: 1
+      type: string
+    - jsonPath: .spec.podTemplate.spec.containers[*].name
+      name: Containers
+      priority: 1
+      type: string
+    name: v1alpha1
     schema:
       openAPIV3Schema:
         properties:
